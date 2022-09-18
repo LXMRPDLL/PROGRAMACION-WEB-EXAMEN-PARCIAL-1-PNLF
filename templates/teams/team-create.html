@@ -1,0 +1,11 @@
+{% extends 'layout/layout.html' %}
+{% block title %}Team | Create{% endblock title %}
+{% block content %}
+    <h1>Create Team</h1>
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-ouline-success">Create</button>
+        <a href="/teams" class="btn btn-outline-danger">Cancel</a>
+    </form>
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends 'layout/layout.html' %}
+{% block title %}{{ team.name }} | Delete{% endblock title %}
+{% block content %}
+    <h1>Delete {{ team.name }}</h1>
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ team }}"?</p>
+        <button type="submit" class="btn btn-danger mb-3">Delete</button>
+        <a href="/teams" class="btn btn-outline-info mb-3">Cancel</a>
+    </form>
+{% endblock content %}
