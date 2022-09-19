@@ -1,0 +1,48 @@
+{% extends 'layout/layout.html' %}
+{% block title %}Stadiums | List{% endblock title %}
+{% block content %}
+<h1>Stadiums</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Capacity</th>
+            <th>Location</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stadium in stadiums %}
+        <tr>
+            <td>{{ stadium.name }}</td>
+            <td>{{ stadium.address }}</td>
+            <td>{{ stadium.capacity }}</td>
+            <td>{{ stadium.location }}</td>
+            <td><a href="/stadiums/{{ stadium.id }}/update" class="btn btn-outline-secondary">Update</a></td>
+            <td>
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#{{ stadium.slug }}">Delete</button>
+                <div class="modal fade" id="{{ stadium.slug }}" tabindex="-1" aria-labelledby="StadiumDeleteLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="StadiumDeleteLabel">Delete {{ stadium.name }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete "{{ stadium.name }}"?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="/stadiums/{{ stadium.id }}/delete" type="button" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

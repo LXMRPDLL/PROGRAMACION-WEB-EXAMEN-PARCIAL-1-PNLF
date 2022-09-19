@@ -1,0 +1,11 @@
+{% extends 'layout/layout.html' %}
+{% block title %}Stadium | Create{% endblock title %}
+{% block content %}
+    <h1>Create Stadium</h1>
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a href="/stadiums" class="btn btn-outline-danger mb-3">Cancel</a>
+        <button type="submit" class="btn btn-dark mb-3">Create</button>
+    </form>
+{% endblock content %}
