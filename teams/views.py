@@ -23,9 +23,11 @@ class TeamDetail(generic.View):
     template_name = 'teams/team-detail.html'
     
     def get(self, request, pk):
-        queryset = Team.objects.get(pk=pk)
+        team = Team.objects.get(pk=pk)
+        players = Player.objects.filter(team=team)
         context = {
-            'team': queryset
+            'team': team,
+            'players': players
         }
         return render(request, self.template_name, context)
 

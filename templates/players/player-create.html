@@ -5,7 +5,7 @@
     <form action="" method="post" class="form">
         {% csrf_token %}
         {{ form.as_p }}
-        <a href="/players" class="btn btn-outline-danger">Cancel</a>
-        <button type="submit" class="btn btn-secondary">Create</button>
+        <a href="/players" class="btn btn-outline-danger mb-3">Cancel</a>
+        <button type="submit" class="btn btn-dark mb-3">Create</button>
     </form>
 {% endblock content %}
