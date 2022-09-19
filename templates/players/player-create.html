@@ -1,0 +1,11 @@
+{% extends 'layout/layout.html' %}
+{% block title %}Player | Create{% endblock title %}
+{% block content %}
+    <h1>Create Player</h1>
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a href="/players" class="btn btn-outline-danger">Cancel</a>
+        <button type="submit" class="btn btn-secondary">Create</button>
+    </form>
+{% endblock content %}

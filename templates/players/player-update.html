@@ -1,11 +1,11 @@
 {% extends 'layout/layout.html' %}
-{% block title %}{{ team.name }} | Update{% endblock title %}
+{% block title %}{{ player.first_name }} {{ player.last_name}} | Update{% endblock title %}
 {% block content %}
-    <h1>Update {{ team.name }}</h1>
+    <h1>Update {{ player.first_name }} {{ player.last_name}}</h1>
     <form action="" method="post" class="form">
         {% csrf_token %}
         {{ form.as_p }}
-        <a href="/teams" class="btn btn-outline-danger mb-3">Cancel</a>
+        <a href="/players" class="btn btn-outline-danger mb-3">Cancel</a>
         <button type="submit" class="btn btn-dark mb-3">Update</button>
     </form>
 {% endblock content %}

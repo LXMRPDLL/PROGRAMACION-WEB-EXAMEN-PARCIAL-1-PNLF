@@ -1,4 +1,3 @@
-from operator import ge
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
@@ -6,9 +5,10 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 from .models import Team
+from players.models import Player
 from .forms import TeamForm
-# Create your views here.
 
+# Create your views here.
 class TeamList(generic.View):
     template_name = 'teams/team-list.html'
     
@@ -29,7 +29,7 @@ class TeamDetail(generic.View):
         }
         return render(request, self.template_name, context)
 
-class TeamCreate(SuccessMessageMixin, generic.CreateView):
+class TeamCreate(generic.CreateView, SuccessMessageMixin):
     template_name = 'teams/team-create.html'
     model = Team
     form_class = TeamForm
@@ -38,7 +38,7 @@ class TeamCreate(SuccessMessageMixin, generic.CreateView):
     def get_success_message(self, cleaned_data):
         return "Team Created Successfully"
 
-class TeamUpdate(generic.UpdateView):
+class TeamUpdate(generic.UpdateView, SuccessMessageMixin):
     template_name = 'teams/team-update.html'
     model = Team
     form_class = TeamForm

@@ -1,0 +1,51 @@
+{% extends 'layout/layout.html' %}
+{% block title %}Players | List{% endblock title %}
+
+{% block content %}
+<h1>Players</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Team</th>
+            <th>Position</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in players %}
+        <tr>
+            <td>{{ player.first_name }} {{ player.last_name }}</td>
+            <td>{{ player.age }}</td>
+            <td>{{ player.team }}</td>
+            <td>{{ player.position }}</td>
+            <td>{{ player.status }}</td>
+            <td><a href="/players/{{ player.id }}/update" class="btn btn-outline-secondary">Update</a></td>
+            <td>
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#{{ player.slug }}">Delete</button>
+                <div class="modal fade" id="{{ player.slug }}" tabindex="-1" aria-labelledby="PlayerDeleteLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="PlayerDeleteLabel">Delete {{ player.name }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete "{{ player.first_name }} {{ player.last_name }}"?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="/players/{{ player.id }}/delete" type="button" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
